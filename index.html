@@ -109,58 +109,57 @@ ul li.checked::before {
 </head>
 <body>
 
-  <body>
     <div id="container">
-    <div class="top">
-        <h1>todo List</h1>
-        <input type="text" placeholder="Enter..." id="toDoList">
-        <button class="button">Add</button>
-    </div>
-    <ul id="list">
-      
-    </ul>
+      <div class="top">
+          <h1>todo List</h1>
+          <input type="text" placeholder="Enter..." id="toDoList">
+          <button class="button">Add</button>
+      </div>
+      <ul id="list">
+        
+      </ul>
     </div> 
 
   <script>
 
     let cont = document.getElementById('container');
 
-cont.addEventListener('click', function (e) {
-    let targ = e.target.tagName;
+    cont.addEventListener('click', function (e) {
+      let targ = e.target.tagName;
 
-    if(targ === 'BUTTON') {
-      newElement();
-    }
-    else if(targ === 'LI') {
-       e.target.classList.toggle('checked');
-    } 
-    else if(targ === 'SPAN') {
-       e.target.closest('.element').remove();
-    }
-}, false);
+      if(targ === 'BUTTON') {
+        newElement();
+      }
+      else if(targ === 'LI') {
+        e.target.classList.toggle('checked');
+      } 
+      else if(targ === 'SPAN') {
+        e.target.closest('.element').remove();
+      }
+    }, false);
 
 
-function newElement() {
-    let li = document.createElement('li');
-    li.classList.add('element');
-    let todo = document.getElementById('toDoList').value;
-    let text = document.createTextNode(todo);
-    li.appendChild(text);
+      function newElement() {
+          let li = document.createElement('li');
+          li.classList.add('element');
+          let todo = document.getElementById('toDoList').value;
+          let text = document.createTextNode(todo);
+          li.appendChild(text);
 
-    if(todo.trim() == '') {
-       alert('Enter what to do');
-    }
-    else {
-       document.getElementById('list').appendChild(li);
-    }
+          if(todo.trim() == '') {
+            alert('Enter what to do');
+          }
+          else {
+            document.getElementById('list').appendChild(li);
+          }
 
-    document.getElementById('toDoList').value = '';
-    let span = document.createElement('SPAN');
-    let remove = document.createTextNode('[X]');
-    span.className = 'remove';
-    span.appendChild(remove);
-    li.appendChild(span);
-} 
+          document.getElementById('toDoList').value = '';
+          let span = document.createElement('SPAN');
+          let remove = document.createTextNode('[X]');
+          span.className = 'remove';
+          span.appendChild(remove);
+          li.appendChild(span);
+      } 
 
 
   </script>
