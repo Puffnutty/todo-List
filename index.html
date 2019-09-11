@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+* {
+  box-sizing: border-box;
+}
+#container {
+  width: 750px; 
+  margin: 0 auto
+}
+
+input {
+  border: none;
+  width: 80%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.button {
+  padding: 10px;
+  width: 20%;
+  background: lightgray;
+  border: none;
+  color: grey;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: turquoise;
+} 
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 10px 10px 50px;
+  background: lightcyan;
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+ul li:nth-child {
+  background: white;
+}
+
+ul li:hover {
+  background: blue;
+}
+
+ul li.checked {
+  background: green;
+  color: white;
+}
+ul li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: white;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 15px;
+  transform: rotate(45deg);
+  height: 18px;
+  width: 10px;
+}
+.remove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px 20px 10px 20px;
+  border-left: 1px solid black;
+}
+
+.remove:hover {
+  background-color: red;
+  color: white;
+}
+
+.top {
+  background-color: darkgray;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+.top:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+    </style>
+    
+    <title>Document</title>
+</head>
+<body>
+
+  <body>
+    <div id="container">
+    <div class="top">
+        <h1>todo List</h1>
+        <input type="text" placeholder="Enter..." id="toDoList">
+        <button class="button">Add</button>
+    </div>
+    <ul id="list">
+      
+    </ul>
+    </div> 
+
+  <script>
+
+    let cont = document.getElementById('container');
+
+cont.addEventListener('click', function (e) {
+    let targ = e.target.tagName;
+
+    if(targ === 'BUTTON') {
+      newElement();
+    }
+    else if(targ === 'LI') {
+       e.target.classList.toggle('checked');
+    } 
+    else if(targ === 'SPAN') {
+       e.target.closest('.element').remove();
+    }
+}, false);
+
+
+function newElement() {
+    let li = document.createElement('li');
+    li.classList.add('element');
+    let todo = document.getElementById('toDoList').value;
+    let text = document.createTextNode(todo);
+    li.appendChild(text);
+
+    if(todo.trim() == '') {
+       alert('Enter what to do');
+    }
+    else {
+       document.getElementById('list').appendChild(li);
+    }
+
+    document.getElementById('toDoList').value = '';
+    let span = document.createElement('SPAN');
+    let remove = document.createTextNode('[X]');
+    span.className = 'remove';
+    span.appendChild(remove);
+    li.appendChild(span);
+} 
+
+
+  </script>
+</body>
+</html>
